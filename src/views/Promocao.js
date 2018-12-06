@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, StatusBar, FlatList, ActivityIndicator } from 'react-native';
 import ProductCard from '../components/ProductCard';
-import { fetchProducts, teste } from '../actions/index';
+import { onSaleProducts, teste } from '../actions/index';
 import { connect } from 'react-redux'
 
-class Home extends Component {
+class Promocao extends Component {
   
   componentDidMount() {
-    this.props.dispatch(fetchProducts());
+    this.props.dispatch(onSaleProducts());
   }
 
   render() {
-    const { listProducts } = this.props
+    const { onSaleProducts } = this.props
     return (
       this.props.loading ? (
         <View style={styles.container}>
           <FlatList
-              data={listProducts}
+              data={onSaleProducts}
               renderItem={(product) => (
                 <ProductCard key={product.item._id} product={product.item} />
 
@@ -32,15 +32,15 @@ class Home extends Component {
   }
 }
 
-function mapStateToProps({ listProducts, loading }) {
-  console.log(listProducts)
+function mapStateToProps({ onSaleProducts, loading }) {
+  console.log(onSaleProducts)
   return {
-    listProducts,
+    onSaleProducts,
     loading
   }
 }
 
-export default connect(mapStateToProps)(Home)
+export default connect(mapStateToProps)(Promocao)
 
 const styles = StyleSheet.create({
   container: {

@@ -1,6 +1,8 @@
 import { createMaterialTopTabNavigator , createAppContainer } from 'react-navigation';
 import Home from './views/Home'
 import { default as MaterialIcons } from 'react-native-vector-icons/MaterialIcons'
+import Promocao from './views/Promocao';
+import Carrinho from './views/Carrinho';
 
 const TabNavigator = createMaterialTopTabNavigator({
     Inicio: {
@@ -10,10 +12,16 @@ const TabNavigator = createMaterialTopTabNavigator({
         }
     },
     Promocao: {
-        screen: Home,
+        screen: Promocao,
+        navigationOptions: {
+            title: 'Promoção'
+        }
     },
     Carrinho: {
-        screen: Home,
+        screen: Carrinho,
+        navigationOptions: {
+            title: 'Carrinho'
+        }
     },
 
 }, 

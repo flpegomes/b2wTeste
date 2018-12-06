@@ -1,61 +1,56 @@
 import React, { Component } from 'react'
 import { View, StyleSheet, Image, Text, TouchableOpacity } from 'react-native'
 import { default as AntDesign } from 'react-native-vector-icons/AntDesign'
+import numeral from 'numeral'
+import { addCart } from '../actions';
+import { addCart } from '../actions/index';
+
 
 class ProductCard extends Component {
+
     render() {
-        return (<View>
+        const { _id, name, imgUrl, price, quantity, installments, onSale} = this.props.product
+        
+        
+        const priceInstallments = (price) => { return numeral(price/installments).format('0.00') }
+
+        return (
             <View style={styles.card}>
                 <View style={styles.cardContent}>
                     <Image 
-                        source={{uri: 'https://images-americanas.b2w.io/produtos/01/00/item/132491/2/132491243_1GG.jpg'}}
+                        source={{uri: imgUrl}}
                         style={{height: 100, width: 100}}
                     />
                     <View style={styles.content}>
-                        <View style={styles.cardHeader}>
-                            <View style={[styles.tags,{ backgroundColor: '#e60014' }]}>
-                                <Text style={styles.textTags}>PROMOÇÃO</Text>
+                        {onSale !== null ? (
+                            <View>
+                                <View style={styles.cardHeader}>
+                                    <View style={[styles.tags,{ backgroundColor: '#e60014' }]}>
+                                        <Text style={styles.textTags}>PROMOÇÃO</Text>
+                                    </View>
+                                </View> 
+                                <Text style={styles.productTitle}>{name}</Text>
+                                <Text style={styles.productPrice}>de R$ {price}, por: </Text>
+                                <Text style={styles.productOnSalePrice}>R$ {onSale.price}</Text>
+                                <Text style={styles.productPriceInformation}>{installments}x de R$ {priceInstallments(onSale.price)} s/ juros.</Text>
                             </View>
-                        </View> 
-                        <Text style={styles.productTitle}>Game Knack 2 - PS4</Text>
-                        <Text style={styles.productPrice}>R$ 999,00</Text>
-                        <Text style={styles.productPriceInformation}>10x de R$ 99,00 s/ juros.</Text>
+                        ) : (
+                            <View>
+                                <Text style={styles.productTitle}>{name}</Text>
+                                <Text style={styles.productPrice}>R$ {price}</Text>
+                                <Text style={styles.productPriceInformation}>{installments}x de R$ {priceInstallments(price)} s/ juros.</Text>
+                            </View>
+                        )}
                         <TouchableOpacity 
-                            onPress={() => {}}
+                            onPress={() => this.props.dispatch(addCart(this.props.product))}
                             style={styles.button}
                         >
-                            <Text style={styles.textButton}>COMPRAR</Text>
+                            <Text style={styles.textButton}>ADICIONAR NO CARRINHO</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
             </View>
-            <View style={styles.card}>
-            <View style={styles.cardContent}>
-                <Image 
-                    source={{uri: 'https://images-americanas.b2w.io/produtos/01/00/offers/01/00/item/133759/8/133759820_1GG.png'}}
-                    style={{height: 100, width: 100}}
-                />
-                <View style={styles.content}>
-                    <View style={styles.cardHeader}>
-                        <View style={[styles.tags,{ backgroundColor: '#007bff' }]}>
-                            <Text style={styles.textTags}>MAIS VENDIDO</Text>
-                        </View>
-                    </View> 
-                    <Text style={styles.productTitle}>Smart TV LED 55" Philco PTV55G50SN Ultra HD 4k com Conversor Digital 3 HDMI 2 USB Wi-Fi Soundbar Embutido 60Hz Preta</Text>
-                    <Text style={styles.productPrice}>R$ 2.579,99</Text>
-                    <Text style={styles.productPriceInformation}>10x de R$ 257,99 s/ juros.</Text>
-                    <TouchableOpacity 
-                            onPress={() => {}}
-                            style={styles.button}
-                        >
-                            <Text style={styles.textButton}>COMPRAR</Text>
-                        </TouchableOpacity>
-                </View>
-                
-            </View>
-        </View>
 
-            </View>
         )
     }
 }
@@ -63,6 +58,11 @@ class ProductCard extends Component {
 export default ProductCard;
 
 const styles = StyleSheet.create({
+    productOnSalePrice: {
+        fontSize: 16,
+        color: '#000',
+        fontWeight: '700',
+    },
     button: {
         backgroundColor: '#e60014',
         borderRadius: 2,
@@ -84,7 +84,6 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: '#000',
         fontWeight: '300',
-
     },
     productTitle: {
         fontSize: 14, 
