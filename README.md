@@ -43,3 +43,5 @@ Tela de carrinho com produtos e botão para retirar item do carrinho:
 ## Observações 
 
 Para a realização do projeto, foi criada uma Promise que retorna os produtos, simulando uma API. Não tive informações e acesso suficientes para usar a própria api da lojas americanas. Porém todos os produtos cadastrados tem seus dados parecidos com os dados dos produtos dentro do site da loja.
+
+O App foi testado somente em android, por falta de dispositivos para teste em iOS
