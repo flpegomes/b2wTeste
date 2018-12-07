@@ -2,13 +2,15 @@ import React, { Component } from 'react'
 import { View, StyleSheet, Image, Text, TouchableOpacity } from 'react-native'
 import { default as AntDesign } from 'react-native-vector-icons/AntDesign'
 import numeral from 'numeral'
-import { addCart } from '../actions/index';
+import { removeToCart } from '../actions/index';
 import { connect } from 'react-redux'
 
-class ProductCard extends Component {
+class ProductCart extends Component {
 
     render() {
+        console.log(this.props.product)
         const { _id, name, imgUrl, price, quantity, installments, onSale} = this.props.product
+        
         
         
         const priceInstallments = (price) => { return numeral(price/installments).format('0.00') }
@@ -41,10 +43,10 @@ class ProductCard extends Component {
                             </View>
                         )}
                         <TouchableOpacity 
-                            onPress={() => this.props.dispatch(addCart(this.props.product))}
+                            onPress={() => this.props.dispatch(removeToCart(this.props.product))}
                             style={styles.button}
                         >
-                            <Text style={styles.textButton}>ADICIONAR NO CARRINHO</Text>
+                            <Text style={styles.textButton}>EXCLUIR DO CARRINHO</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -54,7 +56,7 @@ class ProductCard extends Component {
     }
 }
 
-export default connect()(ProductCard);
+export default connect()(ProductCart);
 
 const styles = StyleSheet.create({
     productOnSalePrice: {

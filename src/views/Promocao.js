@@ -17,6 +17,7 @@ class Promocao extends Component {
         <View style={styles.container}>
           <FlatList
               data={onSaleProducts}
+              keyExtractor={(product) => product._id}
               renderItem={(product) => (
                 <ProductCard key={product.item._id} product={product.item} />
 
@@ -33,7 +34,6 @@ class Promocao extends Component {
 }
 
 function mapStateToProps({ onSaleProducts, loading }) {
-  console.log(onSaleProducts)
   return {
     onSaleProducts,
     loading

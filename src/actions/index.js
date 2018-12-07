@@ -4,6 +4,7 @@ import _ from 'lodash'
 export const GET_PRODUCTS = 'GET_PRODUCTS'
 export const ONSALE_PRODUCTS = 'ONSALE_PRODUCTS'
 export const ADD_CART = 'ADD_CART'
+export const REMOVE_CART = 'REMOVE_CART'
 
 export function fetchProducts() {
     return dispatch => {
@@ -25,9 +26,14 @@ export function onSaleProducts() {
 }
 
 export function addCart(product) {
-    console.log('as')
     return dispatch => {
         dispatch({type: ADD_CART, product})
+    }
+}
+
+export function removeToCart(product) {
+    return dispatch => {
+        dispatch({type: REMOVE_CART, product})
     }
 }
 

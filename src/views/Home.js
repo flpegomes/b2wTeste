@@ -12,18 +12,20 @@ class Home extends Component {
 
   render() {
     const { listProducts } = this.props
+    console.log(listProducts)
     return (
       this.props.loading ? (
         <View style={styles.container}>
           <FlatList
               data={listProducts}
+              keyExtractor={(product) => product._id}
               renderItem={(product) => (
                 <ProductCard key={product.item._id} product={product.item} />
 
             )}
           />
         </View>
-      ): (
+      ) : (
         <View style={{marginTop: 25}}>
           <ActivityIndicator size="large" color="#a8000e" />
         </View> 
@@ -33,7 +35,6 @@ class Home extends Component {
 }
 
 function mapStateToProps({ listProducts, loading }) {
-  console.log(listProducts)
   return {
     listProducts,
     loading
