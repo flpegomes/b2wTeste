@@ -36,7 +36,3 @@ export function removeToCart(product) {
         dispatch({type: REMOVE_CART, product})
     }
 }
-
-export function teste() {
-    console.log('teste')
-}

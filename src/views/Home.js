@@ -12,7 +12,6 @@ class Home extends Component {
 
   render() {
     const { listProducts } = this.props
-    console.log(listProducts)
     return (
       this.props.loading ? (
         <View style={styles.container}>

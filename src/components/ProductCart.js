@@ -8,7 +8,6 @@ import { connect } from 'react-redux'
 class ProductCart extends Component {
 
     render() {
-        console.log(this.props.product)
         const { _id, name, imgUrl, price, quantity, installments, onSale} = this.props.product
         
         

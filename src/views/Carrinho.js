@@ -36,7 +36,6 @@ class Carrinho extends Component {
 }
 
 function mapStateToProps({ cart, loading }) {
-  console.log(cart)
   if(cart === undefined || _.isEmpty(cart) ) {
     return {
       cart: undefined,
