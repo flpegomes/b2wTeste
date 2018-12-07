@@ -14,7 +14,7 @@ const TabNavigator = createMaterialTopTabNavigator({
     Promocao: {
         screen: Promocao,
         navigationOptions: {
-            title: 'Promoção'
+            title: 'Promoções'
         }
     },
     Carrinho: {
